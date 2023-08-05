@@ -1,8 +1,6 @@
 const express = require("express");
 const appointmentController = require("../Controllers/appointments.controller");
 const verifyToken = require("../Middlewares/verifyToken");
-const uploader = require("../Middlewares/Uploader");
-const multer  = require('multer')
 const router = express.Router();
 
 
