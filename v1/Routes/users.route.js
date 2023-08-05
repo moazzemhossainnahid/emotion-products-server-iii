@@ -10,7 +10,7 @@ router.put("/:email", userController.postAnUser);
 router.get("/:email", userController.getAnUser);
 
 // get all Users
-router.get("/", verifyToken, userController.getAllUsers);
+router.get("/", userController.getAllUsers);
 
 // delete an User
 router.delete("/:id", verifyToken, userController.deleteUser);
