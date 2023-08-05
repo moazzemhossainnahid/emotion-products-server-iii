@@ -32,7 +32,7 @@ app.use('/api/v1/stripe', stripeRoute);
 
 app.get("/", (req, res) => {
     try {
-        res.send("Welcome to LovBuy e-Commerce Server !");
+        res.send("Welcome to Emotion Products Server !");
     } catch (error) {
         console.log(error.message);
     };

@@ -4,7 +4,7 @@ const colors = require("colors");
 
 const dbConnect = () => {
     mongoose.connect(process.env.mongodbAtlas, {
-        dbName:"LovBuyeCommerce"
+        dbName:"EProducts"
     })
         .then(() => {
         console.log(`Database Connected Succesfully`.white.bgRed.bold)
