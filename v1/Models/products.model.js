@@ -4,71 +4,60 @@ const validator = require("validator");
 
 const productSchema = mongoose.Schema(
     {
-        id: {
-            type: String,
-            unique: true,
-        },
-        sku: {
-            type: String,
-            unique: true,
-        },
         name: {
             type: String,
             trim: true,
-            unique: false,
             required: [true, "name is required"],
-            minLength: [1, "Name must be at least a character."],
-            maxLength: [150, "Name is too large"],
         },
         category: {
             type: String,
             trim: true,
-            minLength: [1, "Category must be at least a characters."],
-            maxLength: [20, "Category is too large"],
-        },
-        seller: {
-            type: String,
-            trim: true,
-            minLength: [1, "Category must be at least a characters."],
-            maxLength: [20, "Category is too large"],
         },
         description: {
             type: String,
-            required: [false, "Description is not required"],
+            required: [false, "Description is required"],
             trim: true,
         },
-        images: {
+        sku: {
+            type: String,
+            required: [true, "SKU is required"],
+        },
+        specifications: [{
+            width: { type: String },
+            height: { type: String },
+        }],
+        variants: [{
+            size: { type: String },
+            color: { type: String },
+            material: { type: String },
+        }],
+        tags: [{ type: String }],
+        description: {
+            type: String,
+            required: [true, "Description is Required"],
+            trim: true,
+        },
+        image: {
             required: true,
-            type: Array,
-            // validate: [validator.isURL, "Please provide Thumbnail Image URL"],
+            type: String,
+            validate: [validator.isURL, "Please Provide Product Image URL"],
         },
-        stock: {
-            type: Number,
-            required: [false, "Stock is not required"],
-        },
-        ratings: {
-            type: Number,
-            required: [false, "ratings is not required"],
-        },
-        ratingsCount: {
-            type: Number,
-            required: [false, "ratingsCount is not required"],
+        gallery: {
+            required: false,
+            type: String,
+            validate: [validator.isURL, "Please Provide More Product Image URL"],
         },
         price: {
             type: Number,
             required: [true, "Price is required"],
         },
-        sale: {
+        stock: {
             type: Number,
-            required: [false, "sale is not required"],
+            required: [true, "Stock is required"],
         },
-        shipping: {
-            type: Number,
-            required: [false, "shipping is not required"],
-        },
-        quantity: {
-            type: Number,
-            required: [false, "quantity is not required"],
+        createdAt: {
+            type: String,
+            trim: true,
         },
 
     },
@@ -77,6 +66,7 @@ const productSchema = mongoose.Schema(
     }
 
 );
+
 
 const Products = mongoose.model("products", productSchema);
 

@@ -18,6 +18,8 @@ app.use('/public', express.static('public'))
 const usersRoute = require('./v1/Routes/users.route');
 const productsRoute = require('./v1/Routes/products.route');
 const stripeRoute = require('./v1/Routes/stripe.route');
+const ordersRoute = require('./v1/Routes/orders.route');
+const appointmentsRoute = require('./v1/Routes/appointments.route');
 
 
 
@@ -27,6 +29,8 @@ const stripeRoute = require('./v1/Routes/stripe.route');
 app.use('/api/v1/users', usersRoute);
 app.use('/api/v1/products', productsRoute);
 app.use('/api/v1/stripe', stripeRoute);
+app.use('/api/v1/orders', ordersRoute);
+app.use('/api/v1/appointments', appointmentsRoute);
 
 
 
