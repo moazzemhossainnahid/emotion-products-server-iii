@@ -8,7 +8,7 @@ require('dotenv').config();
 
 
 
-app.use(cors());
+app.use(cors({ origin: '*', methods: 'GET,HEAD,PUT,PATCH,POST,DELETE' }));
 app.use(express.json());
 
 
@@ -33,12 +33,7 @@ app.use('/api/v1/stripe', stripeRoute);
 app.use('/api/v1/orders', ordersRoute);
 app.use('/api/v1/appointments', appointmentsRoute);
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://www.emotion-productsbv.com');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-  });
+
 
 app.get("/", (req, res) => {
     try {
