@@ -8,7 +8,7 @@ require('dotenv').config();
 
 
 
-app.use(cors({ origin: '*', methods: 'GET,HEAD,PUT,PATCH,POST,DELETE' }));
+app.use(cors());
 app.use(express.json());
 
   
