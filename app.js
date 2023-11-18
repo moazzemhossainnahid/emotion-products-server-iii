@@ -5,7 +5,6 @@ const PORT = process.env.PORT || 5000;
 const colors = require("colors");
 const mongoose = require('mongoose');
 require('dotenv').config();
-const { createProxyMiddleware } = require('http-proxy-middleware');
 
 
 
