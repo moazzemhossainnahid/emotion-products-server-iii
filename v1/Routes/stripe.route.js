@@ -6,6 +6,7 @@ require('dotenv').config();
 // This is your secret API key.
 const stripe = require('stripe')(process.env.STRIPE_KEY);
 
+// console.log(stripe);
 
 // post an user
 router.post('/create-checkout-session', async (req, res) => {
