@@ -23,13 +23,13 @@ router.post('/create-checkout-session', async (req, res) => {
       price_data: {
         currency: "eur",
         product_data: {
-          name: item.name,
-          images: [item.image],
-          description: item.description,
+          name: item?.name,
+          images: [item?.image],
+          description: item?.description,
         },
         unit_amount: item.price * 100,
       },
-      quantity: 1,
+      quantity: item?.quantity,
     }
   })
 
@@ -39,28 +39,28 @@ router.post('/create-checkout-session', async (req, res) => {
       allowed_countries: ['US', 'CA', 'KN'],
     },
     mode: 'payment',
-    shipping_options: [
-      {
-        shipping_rate_data: {
-          type: 'fixed_amount',
-          fixed_amount: {
-            amount: 3000,
-            currency: 'eur',
-          },
-          display_name: 'Next day air',
-          delivery_estimate: {
-            minimum: {
-              unit: 'business_day',
-              value: 1,
-            },
-            maximum: {
-              unit: 'business_day',
-              value: 1,
-            },
-          },
-        },
-      },
-    ],
+    // shipping_options: [
+    //   {
+    //     shipping_rate_data: {
+    //       type: 'fixed_amount',
+    //       fixed_amount: {
+    //         amount: 3000,
+    //         currency: 'eur',
+    //       },
+    //       display_name: 'Next day air',
+    //       delivery_estimate: {
+    //         minimum: {
+    //           unit: 'business_day',
+    //           value: 1,
+    //         },
+    //         maximum: {
+    //           unit: 'business_day',
+    //           value: 1,
+    //         },
+    //       },
+    //     },
+    //   },
+    // ],
     line_items,
     phone_number_collection: {
       enabled: true
