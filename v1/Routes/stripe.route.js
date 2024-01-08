@@ -33,11 +33,16 @@ router.post('/create-checkout-session', async (req, res) => {
     }
   })
 
+  const id = req.body?.checkoutItems[0]?.id;
+
+  // console.log("id", id);
+
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     shipping_address_collection: {
       allowed_countries: ['US', 'CA', 'KN'],
     },
+
     mode: 'payment',
     // shipping_options: [
     //   {
@@ -72,9 +77,10 @@ router.post('/create-checkout-session', async (req, res) => {
     // tax_id_collection: {
     //   enabled: true,
     // },
+
     mode: 'payment',
     success_url: `${process.env.CLIENT_URL}/checkout-success`,
-    cancel_url: `${process.env.CLIENT_URL}/cart`,
+    cancel_url: `${process.env.CLIENT_URL}/cart/${id}`,
   });
 
   res.send({ url: session.url });
