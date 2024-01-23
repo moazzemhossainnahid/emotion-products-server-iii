@@ -10,7 +10,7 @@ const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 // post an user
 router.post('/create-checkout-session', async (req, res) => {
-  // console.log("checkbody", req.body);
+  console.log("checkbody", req.body.checkoutItems);
 
   const customer = await stripe.customers.create({
     metadata: {
@@ -27,9 +27,10 @@ router.post('/create-checkout-session', async (req, res) => {
           images: [item?.image],
           description: item?.description,
         },
-        unit_amount: item.price * 100,
+        unit_amount: item.payableAmount * 100,
       },
-      quantity: item?.quantity,
+      quantity: 1,
+      // quantity: item?.quantity,
     }
   })
 
@@ -40,7 +41,7 @@ router.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     shipping_address_collection: {
-      allowed_countries: ['US', 'CA', 'KN'],
+      allowed_countries: ['US', 'CA', 'KN', 'NL'],
     },
 
     mode: 'payment',
