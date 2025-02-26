@@ -8,14 +8,7 @@ require('dotenv').config();
 
 
 
-app.use(
-    cors({
-        origin: ["https://www.emotion-productsbv.com", "https://emotion-productsbv.com", "http://localhost:5173", "https://emotionproducts.vercel.app"], // Allow both your frontend and Vercel
-        methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-        credentials: true, // Allow cookies & auth headers
-        allowedHeaders: ["Content-Type", "Authorization"], // Ensure correct headers are allowed
-    })
-);
+app.use(cors());
 app.use(express.json());
 
 
