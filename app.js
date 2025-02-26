@@ -8,10 +8,16 @@ require('dotenv').config();
 
 
 
-app.use(cors());
+app.use(
+    cors({
+        origin: ["https://www.emotion-productsbv.com", "https://emotion-productsbv.com", "http://localhost:5173", "https://emotionproducts.vercel.app"], // Allow both your frontend and Vercel
+        methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+        credentials: true, // Allow cookies & auth headers
+        allowedHeaders: ["Content-Type", "Authorization"], // Ensure correct headers are allowed
+    })
+);
 app.use(express.json());
 
-  
 
 app.use('/public', express.static('public'))
 
@@ -21,8 +27,7 @@ const productsRoute = require('./v1/Routes/products.route');
 const stripeRoute = require('./v1/Routes/stripe.route');
 const ordersRoute = require('./v1/Routes/orders.route');
 const appointmentsRoute = require('./v1/Routes/appointments.route');
-
-
+const dbConnect = require("./Utilities/dbConnect");
 
 
 
@@ -33,6 +38,9 @@ app.use('/api/v1/stripe', stripeRoute);
 app.use('/api/v1/orders', ordersRoute);
 app.use('/api/v1/appointments', appointmentsRoute);
 
+
+
+dbConnect();
 
 
 app.get("/", (req, res) => {
@@ -60,5 +68,3 @@ app.listen(PORT, () => {
         console.log(error.message);
     };
 });
-
-exports = app;

@@ -8,6 +8,15 @@ const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 // console.log(stripe);
 
+router.use(
+  cors({
+      origin: ["https://www.emotion-productsbv.com", "https://emotion-productsbv.com", "http://localhost:5173", "https://emotionproducts.vercel.app"],
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      credentials: true,
+      allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 // post an user
 router.post('/create-checkout-session', async (req, res) => {
   console.log("checkbody", req.body.checkoutItems);
