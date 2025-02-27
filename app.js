@@ -9,8 +9,8 @@ require('dotenv').config();
 
 const allowedOrigins = [
     "http://localhost:5173",
-    "https://www.emotion-productsbv.com",
-    "https://emotion-products-server-iii.vercel.app"
+    "https://your-live-domain.com",
+    "https://your-vercel-app.vercel.app"
 ];
 
 
