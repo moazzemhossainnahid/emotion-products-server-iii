@@ -1,6 +1,5 @@
 const express = require('express');
 const userController = require("../Controllers/users.controller");
-const verifyToken = require("../Middlewares/verifyToken");
 const router = express.Router();
 
 // post an user
